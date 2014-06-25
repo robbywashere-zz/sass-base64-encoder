@@ -15,3 +15,9 @@ $> python -m SimpleHTTPServer
 -visit http://localhost:8000
 
 -great job!
+
+
+Much thanks to Hugo Giraudel for his Bitwise functions 
+==========
+
+Check it out: https://github.com/HugoGiraudel/SassyBitwise
