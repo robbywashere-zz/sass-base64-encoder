@@ -1,0 +1,23 @@
+//UTF-8
+
+$charlist: " ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","{","|","}","~";
+
+@function char_code($char) {
+  $index: index($charlist,$char);
+  
+  @if $index {
+    @return index($charlist,$char) + 31;
+  }
+  @else  {
+    @warn "--->" + $char + "<---- is out of bounds";
+    @return 0; 
+  }
+}
+
+@function char_code_at($string,$i) {
+  $i: $i + 1;
+  //@debug 'Char: ' + str-slice($string,$i,$i);
+  @return char_code(str-slice($string,$i,$i));
+}
+
+

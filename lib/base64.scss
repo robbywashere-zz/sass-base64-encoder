@@ -1,0 +1,43 @@
+@import "bitwise";
+@import "charcode";
+
+$base64chars: "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","+","/";
+
+@function base64_encode($s) {
+  $r: "";
+  $p: "";
+  $c: str-length($s) % 3;
+
+  @if ($c > 0) { 
+    @while ($c < 3) { 
+      $p: $p + '='; 
+      $s: $s + " "; 
+
+      $c: $c + 1;
+    } 
+  }
+  $c: 0;
+  @while ($c < str-length($s)) {
+
+
+    $n: bitwise(char_code_at($s,$c) '<<' 16) + bitwise(char_code_at($s,$c + 1) '<<' 8) + char_code_at($s, $c + 2);
+
+
+    $n0: bitwise(bitwise($n '>>' 18) '&' 63);
+    $n1: bitwise(bitwise($n '>>' 12) '&' 63);
+    $n2: bitwise(bitwise($n '>>' 6) '&' 63);
+    $n3: bitwise($n '&' 63);
+
+    //@debug $n0 $n1 $n2 $n3;
+
+    $r: $r + nth($base64chars,$n0 + 1) + nth($base64chars,$n1 + 1) + nth($base64chars,$n2 +1) + nth($base64chars,$n3 + 1); //Plus 1 because list is not 0 indexed!
+    $c: $c + 3;
+  }
+
+
+  @return $r; //padding isnt working hmmm
+
+
+
+}
+
