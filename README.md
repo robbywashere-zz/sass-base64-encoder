@@ -17,7 +17,6 @@ $> python -m SimpleHTTPServer
 -great job!
 
 
-Much thanks to Hugo Giraudel for his Bitwise functions 
-==========
+###Much thanks to Hugo Giraudel for his Bitwise functions 
 
 Check it out: https://github.com/HugoGiraudel/SassyBitwise
